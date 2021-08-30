@@ -177,8 +177,10 @@ def train(args: Dict):
             optimizer.zero_grad()
 
             batch_size = len(src_sents)
+            
 
             example_losses = -model(src_sents, tgt_sents) # (batch_size,)
+
             batch_loss = example_losses.sum()
             loss = batch_loss / batch_size
 
@@ -186,9 +188,9 @@ def train(args: Dict):
 
             # clip gradient
             grad_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), clip_grad)
-
+            print("before step")
             optimizer.step()
-
+            print(" after step")
             batch_losses_val = batch_loss.item()
             report_loss += batch_losses_val
             cum_loss += batch_losses_val
