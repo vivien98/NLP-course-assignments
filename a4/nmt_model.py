@@ -369,11 +369,7 @@ class NMT(nn.Module):
         U_t = torch.cat((dec_hidden,a_t),1)
         V_t = self.combined_output_projection(U_t)
         O_t = self.dropout(torch.tanh(V_t))
-
-
-
-
-
+        
         ### END YOUR CODE
 
         combined_output = O_t
